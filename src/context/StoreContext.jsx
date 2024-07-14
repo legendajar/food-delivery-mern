@@ -17,12 +17,18 @@ const StoreContextProvider = (props) => {
         }
     }
 
-    // To remove or decrease the food item in the cart
-    const removeFromCart = (itemId) => {
-        if (cartItems[itemId]) {
+    const decreaseFromCart = (itemId) => {
+        if (cartItems[itemId] > 1) {
             setCartItems((prev) => ({...prev, [itemId]: prev[itemId] - 1}))
         }
         else {
+            removeFromCart(itemId)
+        }
+    }
+
+    // To remove the food item in the cart
+    const removeFromCart = (itemId) => {
+        if (cartItems[itemId]) {
             setCartItems((prev) => ({...prev, [itemId]: 0}))
         }
     }
@@ -36,6 +42,7 @@ const StoreContextProvider = (props) => {
         cartItems,
         setCartItems, 
         addToCart,
+        decreaseFromCart,
         removeFromCart
     }
 

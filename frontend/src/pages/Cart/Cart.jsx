@@ -37,7 +37,7 @@ const Cart = () => {
                   }}>+</p>
                   <p className="cross" onClick={() => {
                     removeFromCart(item._id);
-                  }}>x</p>
+                  }}>-</p>
                 </div>
                 <hr />
               </div>

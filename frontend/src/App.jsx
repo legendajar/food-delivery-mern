@@ -6,6 +6,7 @@ import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -14,6 +15,7 @@ const App = () => {
       {showLogin ? <LoginPopUp setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
         <Navbar setShowLogin={setShowLogin} />
+        <ToastContainer />
 
         {/* Add your routes here */}
         <Routes>

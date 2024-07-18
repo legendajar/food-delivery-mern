@@ -21,6 +21,18 @@ const Orders = ({ url }) => {
     }
   }
 
+  const statusHandler = async (event, orderId) => {
+    const response = await axios.post(`${url}/api/order/status`, {
+      orderId,
+      status: event.target.value
+    });
+
+    if (response.data.success) {
+      await fetchAllOrders();
+    }
+
+  }
+
   useEffect(() => {
     fetchAllOrders();
   }, [url]); // Add url as a dependency
@@ -45,7 +57,7 @@ const Orders = ({ url }) => {
               </p>
               <div className='order-item-address'>
                 <p>{order.address.street + ", " + order.address.city}</p>
-                <p>{order.address.state +", " + order.address.country}</p>
+                <p>{order.address.state + ", " + order.address.country}</p>
                 <p>Pincode: {order.address.zip}</p>
               </div>
               <p className="order-item-phone">Phone: {order.address.mobile}</p>
@@ -53,7 +65,7 @@ const Orders = ({ url }) => {
             <p>Items: {order.items.length} </p>
             <p>Total: &#8377; {order.amount} </p>
 
-            <select name="" id="">
+            <select onChange={(event) => statusHandler(event, order._id)} value={order.status} >
               <option value="Food Processing">Food Processing</option>
               <option value="Out for Delivery">Out for Delivery</option>
               <option value="Delivered">Delivered</option>
